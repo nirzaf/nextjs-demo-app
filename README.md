@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Navigation Example
 
-## Getting Started
+This project demonstrates the use of Next.js's `<Link>` component for optimized client-side navigation.
 
-First, run the development server:
+## Why Optimize Navigation?
+
+Traditionally, navigation between pages is done using the `<a>` HTML element, which causes a full page refresh on each navigation. Next.js provides the `<Link>` component to enable client-side navigation with JavaScript, making transitions between pages feel smooth and fast.
+
+## Key Benefits of the `<Link>` Component
+
+1. **No Full Page Refreshes**: Only the content that changes is updated, not the entire page.
+2. **Automatic Code-Splitting**: Next.js splits your application by route segments, loading only the code needed for the current page.
+3. **Prefetching**: In production, whenever `<Link>` components appear in the viewport, Next.js automatically prefetches the code for the linked route in the background.
+
+## Project Structure
+
+- `/src/app/page.tsx` - The main page with a link to the dashboard
+- `/src/app/dashboard/layout.tsx` - The dashboard layout with navigation sidebar
+- `/src/app/ui/dashboard/nav-links.tsx` - The navigation links component using Next.js `<Link>`
+- `/src/app/dashboard/page.tsx` - The dashboard home page
+- `/src/app/dashboard/invoices/page.tsx` - The invoices page
+- `/src/app/dashboard/customers/page.tsx` - The customers page
+
+## How to Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Navigation Example
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Navigate between the Home, Dashboard, Invoices, and Customers pages to see the `<Link>` component in action. Notice how the transitions are smooth without full page refreshes.
 
-## Learn More
+## Implementation Details
 
-To learn more about Next.js, take a look at the following resources:
+The key implementation is in `/src/app/ui/dashboard/nav-links.tsx` where we use the `<Link>` component instead of `<a>` tags:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```tsx
+import Link from 'next/link';
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+// ...
 
-## Deploy on Vercel
+<Link
+  key={link.name}
+  href={link.href}
+  className="..."
+>
+  <LinkIcon className="w-6" />
+  <p className="hidden md:block">{link.name}</p>
+</Link>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This enables all the performance benefits mentioned above.
