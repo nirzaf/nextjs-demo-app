@@ -2,10 +2,14 @@ import Image from "next/image";
 import { ServerComponent } from "./components/servercomponent";
 import { ClientComponent } from "./components/clientsidecomponent";
 import Link from "next/link";
+import ThemeToggle from "./components/ThemeToggle";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -16,11 +20,11 @@ export default function Home() {
           priority
         />
         <ServerComponent />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)] text-gray-800 dark:text-gray-200">
           <li className="mb-2 tracking-[-.01em]">
 
             Welcome{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
+            <code className="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
               src/app/page.tsx
             </code>
             .

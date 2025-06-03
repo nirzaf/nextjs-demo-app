@@ -7,7 +7,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden bg-gray-100 dark:bg-gray-900">
       <div className="w-full flex-none md:w-64">
         <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-white dark:bg-gray-900 rounded-xl shadow-lg">
           {/* Navigation Links - takes most of the space */}
